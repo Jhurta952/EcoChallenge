@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoChallenge.Presentacion", "EcoChallenge.Presentacion\EcoChallenge.Presentacion.csproj", "{DA5B5B84-829D-438A-AB7C-B0D0DD98BF29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA5B5B84-829D-438A-AB7C-B0D0DD98BF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5B5B84-829D-438A-AB7C-B0D0DD98BF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5B5B84-829D-438A-AB7C-B0D0DD98BF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5B5B84-829D-438A-AB7C-B0D0DD98BF29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {999DB2DC-8546-4789-A791-7FACC549F83B}
+	EndGlobalSection
+EndGlobal
