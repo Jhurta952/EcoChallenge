@@ -58,10 +58,28 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMenuAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMenuAdmin.Designer.cs">
+      <DependentUpon>FrmMenuAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMenuJugador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMenuJugador.Designer.cs">
+      <DependentUpon>FrmMenuJugador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMenuAdmin.resx">
+      <DependentUpon>FrmMenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMenuJugador.resx">
+      <DependentUpon>FrmMenuJugador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -52,6 +52,19 @@ namespace EcoChallenge.Presentacion
             if (usuario != null)
             {
                 MessageBox.Show($"Bienvenido {usuario.Nombre}({usuario.Rol})", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                if(usuario.Rol == "Administrador")
+                {
+                    FrmMenuAdmin adminForm = new FrmMenuAdmin();
+                    adminForm.Show();
+                }
+                else if (usuario.Rol == "Jugador")
+                {
+                    FrmMenuJugador jugadorForm = new FrmMenuJugador();
+                    jugadorForm.Show();
+                }
+
+                this.Hide();
             }
             else
             {
