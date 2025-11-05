@@ -70,6 +70,16 @@ namespace EcoChallenge.Presentacion
             {
                 MessageBox.Show("Correo o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            txtContraseña.Clear();
+            txtCorreo.Clear();
+        }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            FrmRegistro frm = new FrmRegistro();
+            frm.Show();
+            this.Hide();
         }
     }
 }

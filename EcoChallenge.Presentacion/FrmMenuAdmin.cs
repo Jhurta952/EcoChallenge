@@ -16,5 +16,13 @@ namespace EcoChallenge.Presentacion
         {
             InitializeComponent();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            FrmLogin login = new FrmLogin();
+            login.Show();
+        }
     }
 }
