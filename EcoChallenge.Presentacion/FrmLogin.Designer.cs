@@ -60,7 +60,7 @@
             this.lblContraseña.Location = new System.Drawing.Point(163, 203);
             this.lblContraseña.Name = "lblContraseña";
             this.lblContraseña.Size = new System.Drawing.Size(76, 16);
-            this.lblContraseña.TabIndex = 2;
+            this.lblContraseña.TabIndex = 0;
             this.lblContraseña.Text = "Contraseña";
             // 
             // txtContraseña
@@ -68,7 +68,7 @@
             this.txtContraseña.Location = new System.Drawing.Point(282, 203);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(242, 22);
-            this.txtContraseña.TabIndex = 3;
+            this.txtContraseña.TabIndex = 2;
             this.txtContraseña.UseSystemPasswordChar = true;
             // 
             // btnIniciar
@@ -76,7 +76,7 @@
             this.btnIniciar.Location = new System.Drawing.Point(70, 331);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(145, 54);
-            this.btnIniciar.TabIndex = 4;
+            this.btnIniciar.TabIndex = 3;
             this.btnIniciar.Text = "Iniciar Sesion";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
@@ -89,13 +89,14 @@
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnRegistrarse
             // 
             this.btnRegistrarse.Location = new System.Drawing.Point(332, 331);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.Size = new System.Drawing.Size(145, 54);
-            this.btnRegistrarse.TabIndex = 6;
+            this.btnRegistrarse.TabIndex = 4;
             this.btnRegistrarse.Text = "Registrarse";
             this.btnRegistrarse.UseVisualStyleBackColor = true;
             this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);

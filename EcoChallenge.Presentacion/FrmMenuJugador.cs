@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +24,27 @@ namespace EcoChallenge.Presentacion
 
             FrmLogin login = new FrmLogin();
             login.Show();
+        }
+
+        private void btnCompletar_Click(object sender, EventArgs e)
+        {
+            if(cmbMisiones.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione una misión.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string tipo = cmbMisiones.SelectedItem.ToString();
+            MisionBase mision = MisionFactory.CrearMision(tipo);
+
+            if (mision != null)
+            {
+                lblResultado.Text = mision.CompletarMision();
+            }
+            else
+            {
+                lblResultado.Text = "No se pudo completar la misión.";
+            }
         }
     }
 }

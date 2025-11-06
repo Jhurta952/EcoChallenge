@@ -46,14 +46,14 @@
             this.txtNombre.Location = new System.Drawing.Point(217, 92);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(322, 22);
-            this.txtNombre.TabIndex = 0;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtContraseña
             // 
             this.txtContraseña.Location = new System.Drawing.Point(217, 210);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(322, 22);
-            this.txtContraseña.TabIndex = 1;
+            this.txtContraseña.TabIndex = 3;
             // 
             // txtCorreo
             // 
@@ -69,7 +69,7 @@
             this.lblTitulo.Location = new System.Drawing.Point(281, 22);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(245, 22);
-            this.lblTitulo.TabIndex = 3;
+            this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Registro de nuevo usuario";
             // 
             // lblNombre
@@ -78,7 +78,7 @@
             this.lblNombre.Location = new System.Drawing.Point(76, 92);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(56, 16);
-            this.lblNombre.TabIndex = 4;
+            this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
             // lblCorreo
@@ -87,7 +87,7 @@
             this.lblCorreo.Location = new System.Drawing.Point(48, 154);
             this.lblCorreo.Name = "lblCorreo";
             this.lblCorreo.Size = new System.Drawing.Size(117, 16);
-            this.lblCorreo.TabIndex = 5;
+            this.lblCorreo.TabIndex = 0;
             this.lblCorreo.Text = "Correo electrónico";
             // 
             // lblContraseña
@@ -96,7 +96,7 @@
             this.lblContraseña.Location = new System.Drawing.Point(76, 216);
             this.lblContraseña.Name = "lblContraseña";
             this.lblContraseña.Size = new System.Drawing.Size(76, 16);
-            this.lblContraseña.TabIndex = 6;
+            this.lblContraseña.TabIndex = 0;
             this.lblContraseña.Text = "Contraseña";
             // 
             // btnVolver
@@ -104,7 +104,7 @@
             this.btnVolver.Location = new System.Drawing.Point(459, 334);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(153, 41);
-            this.btnVolver.TabIndex = 8;
+            this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -114,7 +114,7 @@
             this.btnRegistrar.Location = new System.Drawing.Point(162, 334);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(153, 41);
-            this.btnRegistrar.TabIndex = 9;
+            this.btnRegistrar.TabIndex = 5;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -125,7 +125,7 @@
             this.label1.Location = new System.Drawing.Point(48, 275);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 16);
-            this.label1.TabIndex = 11;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Confirmar Contraseña";
             // 
             // txtConfirmar
@@ -133,7 +133,7 @@
             this.txtConfirmar.Location = new System.Drawing.Point(217, 269);
             this.txtConfirmar.Name = "txtConfirmar";
             this.txtConfirmar.Size = new System.Drawing.Size(322, 22);
-            this.txtConfirmar.TabIndex = 10;
+            this.txtConfirmar.TabIndex = 4;
             this.txtConfirmar.UseSystemPasswordChar = true;
             // 
             // FrmRegistro
