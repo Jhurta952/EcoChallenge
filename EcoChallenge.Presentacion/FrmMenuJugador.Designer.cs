@@ -84,9 +84,8 @@
             this.lblResultado.AutoSize = true;
             this.lblResultado.Location = new System.Drawing.Point(340, 273);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(44, 16);
+            this.lblResultado.Size = new System.Drawing.Size(0, 16);
             this.lblResultado.TabIndex = 5;
-            this.lblResultado.Text = "label2";
             // 
             // FrmMenuJugador
             // 

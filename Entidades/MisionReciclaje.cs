@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class MisionReciclaje : MisionBase
     {
-        public MisionReciclaje() : base("Reciclaje Responsabel mi papa ", " separa correctamente los residuos del hogar", 10)
+        public MisionReciclaje() : base("Reciclaje Responsable mi papa ", " separa correctamente los residuos del hogar", 10)
         {
 
         }
