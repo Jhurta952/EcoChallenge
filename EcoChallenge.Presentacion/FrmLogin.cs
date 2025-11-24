@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using LogicaNegocio;
 using System;
+using AccesoDatos;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,6 +86,22 @@ namespace EcoChallenge.Presentacion
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var conexion = DbConnection.ObtenerConexion();
+                conexion.Open();
+                MessageBox.Show("Conexión exitosa a SQL Server");
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al conectar: " + ex.Message);
+            }
+
         }
     }
 }
