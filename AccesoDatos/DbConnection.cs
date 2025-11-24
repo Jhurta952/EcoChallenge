@@ -10,19 +10,26 @@ namespace AccesoDatos
 {
     public class DbConnection
     {
-        private static SqlConnection instancia = null;
+        private static DbConnection instancia;
+        private readonly string cadenaConexion;
 
-        private static readonly string connectionString =
-            "Server=localhost\\SQLEXPRESS; Database=EcoChallengeDB; Integrated Security=True;";
+        private DbConnection()
+        {
+            cadenaConexion = "Server=localhost\\SQLEXPRESS; Database=EcoChallengeDB; Integrated Security=True;";
+        }
 
-        private DbConnection() { }
-
-        public static SqlConnection ObtenerConexion()
+        public static DbConnection ObtenerInstancia()
         {
             if (instancia == null)
-                instancia = new SqlConnection(connectionString);
-
+            {
+                instancia = new DbConnection();
+            }
             return instancia;
+        }
+
+        public SqlConnection ObtenerConexion()
+        {
+            return new SqlConnection(cadenaConexion);
         }
     }
 }
