@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="MisionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
