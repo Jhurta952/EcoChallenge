@@ -24,5 +24,22 @@ namespace EcoChallenge.Presentacion
             FrmLogin login = new FrmLogin();
             login.Show();
         }
+
+        private void btnMisiones_Click(object sender, EventArgs e)
+        {
+            FrmMisionesAdmin misionesAdmin = new FrmMisionesAdmin();
+            misionesAdmin.Show();
+        }
+
+        private void FrmMenuAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            FrmUsuariosAdmin usuariosAdmin = new FrmUsuariosAdmin();
+            usuariosAdmin.Show();
+        }
     }
 }

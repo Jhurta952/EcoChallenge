@@ -34,17 +34,11 @@ namespace EcoChallenge.Presentacion
                 return;
             }
 
-            string tipo = cmbMisiones.SelectedItem.ToString();
-            MisionBase mision = MisionFactory.CrearMision(tipo);
+        }
 
-            if (mision != null)
-            {
-                lblResultado.Text = mision.CompletarMision();
-            }
-            else
-            {
-                lblResultado.Text = "No se pudo completar la misión.";
-            }
+        private void FrmMenuJugador_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

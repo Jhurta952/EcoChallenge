@@ -17,9 +17,9 @@ namespace LogicaNegocio
             repo = new UsuarioRepository();
         }
 
-        public Usuario IniciarSesion(string correo, string contrasena)
+        public Usuario Login(string correo, string contraseña)
         {
-            return repo.ObtenerPorCorreoYContrasena(correo, contrasena);
+            return repo.ObtenerPorCorreoYContrasena(correo, contraseña);
         }
 
         public string Registrar(Usuario u)
