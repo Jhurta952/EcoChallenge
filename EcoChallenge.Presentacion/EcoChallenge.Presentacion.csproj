@@ -70,6 +70,12 @@
     <Compile Include="FrmMenuJugador.Designer.cs">
       <DependentUpon>FrmMenuJugador.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMisionesAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMisionesAdmin.Designer.cs">
+      <DependentUpon>FrmMisionesAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenuJugador.resx">
       <DependentUpon>FrmMenuJugador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMisionesAdmin.resx">
+      <DependentUpon>FrmMisionesAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRegistro.resx">
       <DependentUpon>FrmRegistro.cs</DependentUpon>
