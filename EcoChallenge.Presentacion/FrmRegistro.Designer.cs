@@ -154,6 +154,7 @@
             this.Controls.Add(this.txtNombre);
             this.Name = "FrmRegistro";
             this.Text = "FrmRegistro";
+            this.Load += new System.EventHandler(this.FrmRegistro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

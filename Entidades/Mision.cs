@@ -12,15 +12,19 @@ namespace Entidades
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int Puntos { get; set; }
+        public string Tipo { get; set; }
+        public bool Activa { get; set; }
 
         public Mision() { }
 
-        public Mision(int id, string nombre, string descripcion, int puntos)
+        public Mision(int id, string nombre, string descripcion, int puntos, string tipo, bool activa)
         {
             Id = id;
             Nombre = nombre;
             Descripcion = descripcion;
             Puntos = puntos;
+            Tipo = tipo;
+            Activa = activa;
         }
     }
 }

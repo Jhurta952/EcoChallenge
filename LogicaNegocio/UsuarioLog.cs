@@ -10,11 +10,26 @@ namespace LogicaNegocio
 {
     public class UsuarioLog
     {
-        private UsuariosDat usuariosDal = new UsuariosDat();
+        private readonly UsuarioRepository repo;
 
-        public Usuario IniciarSesion(string correo, string contraseña)
+        public UsuarioLog()
         {
-            return usuariosDal.ObtenerUsuarioPorCorreoYContraseña(correo, contraseña);
+            repo = new UsuarioRepository();
+        }
+
+        public string Registrar(Usuario u)
+        {
+            if (repo.ExisteCorreo(u.Correo))
+                return "El correo ya está registrado.";
+
+            bool ok = repo.CrearUsuario(u);
+
+            return ok ? "Registrado correctamente" : "Error al registrar";
+        }
+
+        public Usuario Login(string correo, string contrasena)
+        {
+            return repo.ObtenerPorCorreoYContrasena(correo, contrasena);
         }
     }
 }

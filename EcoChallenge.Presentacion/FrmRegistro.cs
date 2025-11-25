@@ -1,5 +1,6 @@
-﻿using Entidades;
-using AccesoDatos;
+﻿using AccesoDatos;
+using Entidades;
+using LogicaNegocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,8 @@ namespace EcoChallenge.Presentacion
 {
     public partial class FrmRegistro : Form
     {
-        private UsuariosDat usuariosDat = new UsuariosDat();
+        private readonly UsuarioLog usuarioLog = new UsuarioLog();
+
         public FrmRegistro()
         {
             InitializeComponent();
@@ -34,64 +36,76 @@ namespace EcoChallenge.Presentacion
             string contraseña = txtContraseña.Text.Trim();
             string confirmar = txtConfirmar.Text.Trim();
 
-            if(string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(confirmar))
+            // ---------------- VALIDACIONES ---------------- //
+
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(correo) ||
+                string.IsNullOrEmpty(contraseña) || string.IsNullOrEmpty(confirmar))
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if(!nombre.All(c=> char.IsLetter(c) || c == ' '))
+            if (!nombre.All(c => char.IsLetter(c) || c == ' '))
             {
-                MessageBox.Show("El nombre solo debe contener letras y espacios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El nombre solo debe contener letras y espacios.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if(!correo.Contains("@") || !correo.Contains(".") || correo.Length < 5)
+            if (!correo.Contains("@") || !correo.Contains(".") || correo.Length < 5)
             {
-                MessageBox.Show("El correo no tiene un formato valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El correo no tiene un formato válido.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if(contraseña.Length < 4)
+            if (contraseña.Length < 4)
             {
-                MessageBox.Show("La contraseña debe tener al menos 4 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La contraseña debe tener al menos 4 caracteres.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if(!contraseña.Any(char.IsLetter) || !contraseña.Any(char.IsDigit))
+            if (!contraseña.Any(char.IsLetter) || !contraseña.Any(char.IsDigit))
             {
-                MessageBox.Show("La contraseña debe contener al menos una letra y un número", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La contraseña debe contener al menos una letra y un número.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (contraseña != confirmar)
             {
-                MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Las contraseñas no coinciden.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var existente = usuariosDat.ObtenerUsuarios().FirstOrDefault(u => u.Correo == correo);
-            if(existente != null)
-            {
-                MessageBox.Show("Ya existe un usuario con ese correo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            Usuario nuevo = new Usuario()
+            Usuario nuevo = new Usuario
             {
-                Id = usuariosDat.ObtenerUsuarios().Count + 1,
                 Nombre = nombre,
                 Correo = correo,
                 Contraseña = contraseña,
                 Rol = "Jugador"
             };
 
-            usuariosDat.ObtenerUsuarios().Add(nuevo);
-            MessageBox.Show("¡Registro exitoso! Ahora puedes iniciar sesión.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            FrmLogin login = new FrmLogin();
-            login.Show();
-            this.Close();
+            string resultado = usuarioLog.Registrar(nuevo);
+
+            MessageBox.Show(resultado);
+
+            if (resultado == "Registrado correctamente")
+            {
+                FrmLogin login = new FrmLogin();
+                login.Show();
+                this.Close();
+            }
+        }
+
+        private void FrmRegistro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

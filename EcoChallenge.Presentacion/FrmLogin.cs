@@ -15,65 +15,68 @@ namespace EcoChallenge.Presentacion
 {
     public partial class FrmLogin : Form
     {
+        private readonly UsuarioLog usuarioLog = new UsuarioLog(); 
+
         public FrmLogin()
         {
             InitializeComponent();
         }
-
-        private void lblCorreo_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        private void lblCorreo_Click(object sender, EventArgs e) { }
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             string correo = txtCorreo.Text.Trim();
             string contraseña = txtContraseña.Text.Trim();
 
-            if (string.IsNullOrEmpty(correo) || string.IsNullOrWhiteSpace(contraseña))
+            // ------------------ VALIDACIONES ------------------ //
+            if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(contraseña))
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            if (!correo.Contains("@") || !correo.Contains(".") || correo.Length < 5)
+            if (!correo.Contains("@") || !correo.Contains("."))
             {
-                MessageBox.Show("El correo no tiene un formato valido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El correo no tiene un formato válido.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (contraseña.Length < 4)
             {
-                MessageBox.Show("La contraseña debe tener al menos 4 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La contraseña debe tener al menos 4 caracteres.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            UsuarioLog usuarioLog = new UsuarioLog();
-            Usuario usuario = usuarioLog.IniciarSesion(correo, contraseña);
+            Usuario usuario = usuarioLog.Login(correo, contraseña);
 
             if (usuario != null)
             {
-                MessageBox.Show($"Bienvenido {usuario.Nombre}({usuario.Rol})", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                if(usuario.Rol == "Administrador")
+                MessageBox.Show($"Bienvenido {usuario.Nombre} ({usuario.Rol})",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (usuario.Rol == "Administrador")
                 {
-                    FrmMenuAdmin adminForm = new FrmMenuAdmin();
-                    adminForm.Show();
+                    FrmMenuAdmin admin = new FrmMenuAdmin();
+                    admin.Show();
                 }
-                else if (usuario.Rol == "Jugador")
+                else
                 {
-                    FrmMenuJugador jugadorForm = new FrmMenuJugador();
-                    jugadorForm.Show();
+                    FrmMenuJugador jugador = new FrmMenuJugador();
+                    jugador.Show();
                 }
 
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Correo o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Correo o contraseña incorrectos.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            txtContraseña.Clear();
             txtCorreo.Clear();
+            txtContraseña.Clear();
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
@@ -88,8 +91,6 @@ namespace EcoChallenge.Presentacion
             Application.Exit();
         }
 
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-        }
+        private void FrmLogin_Load(object sender, EventArgs e) { }
     }
 }
