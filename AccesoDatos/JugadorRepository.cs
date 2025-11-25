@@ -36,7 +36,9 @@ namespace AccesoDatos
                             Id = (int)dr["Id"],
                             Nombre = dr["Nombre"].ToString(),
                             Descripcion = dr["Descripcion"].ToString(),
-                            Puntos = (int)dr["Puntos"]
+                            Puntos = (int)dr["Puntos"],
+                            Tipo = dr["Tipo"].ToString(),
+                            Activa = (bool)dr["Activa"]
                         });
                     }
                 }
@@ -147,6 +149,66 @@ namespace AccesoDatos
                 conn.Close();
             }
             return puntos;
+        }
+
+        public List<Recompensa> ObtenerTodasLasRecompensas()
+        {
+            List<Recompensa> lista = new List<Recompensa>();
+            try
+            {
+                conn.Open();
+                string query = "SELECT Id, Nombre, Descripcion, PuntosNecesarios FROM Recompensas";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(new Recompensa
+                        {
+                            Id = (int)dr["Id"],
+                            Nombre = dr["Nombre"].ToString(),
+                            Descripcion = dr["Descripcion"].ToString(),
+                            PuntosRequeridos = (int)dr["PuntosNecesarios"]
+                        });
+                    }
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return lista;
+        }
+
+        public bool AsignarRecompensa(int idUsuario, int idRecompensa)
+        {
+            try
+            {
+                conn.Open();
+
+                string check = "SELECT COUNT(*) FROM UsuariosRecompensas " +
+                               "WHERE IdUsuario=@u AND IdRecompensa=@r";
+                using (SqlCommand cmdCheck = new SqlCommand(check, conn))
+                {
+                    cmdCheck.Parameters.AddWithValue("@u", idUsuario);
+                    cmdCheck.Parameters.AddWithValue("@r", idRecompensa);
+                    int existe = (int)cmdCheck.ExecuteScalar();
+                    if (existe > 0) return false;
+                }
+
+                string insert = "INSERT INTO UsuariosRecompensas (IdUsuario, IdRecompensa, FechaOtorgada) " +
+                                "VALUES (@u, @r, GETDATE())";
+                using (SqlCommand cmd = new SqlCommand(insert, conn))
+                {
+                    cmd.Parameters.AddWithValue("@u", idUsuario);
+                    cmd.Parameters.AddWithValue("@r", idRecompensa);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

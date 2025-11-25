@@ -27,33 +27,20 @@ namespace EcoChallenge.Presentacion
         private void FrmMenuJugador_Load(object sender, EventArgs e)
         {
             CargarMisiones();
-            CargarRecompensas();
             CargarPuntos();
+            VerificarRecompensasAutomaticas();
+            CargarRecompensas();
         }
-
 
         private void CargarMisiones()
         {
             List<Mision> lista = repo.ObtenerMisionesDiarias();
-            List<Mision> tres = new List<Mision>();
-
-            int contador = 0;
-            foreach (Mision m in lista)
-            {
-                if (m.Activa && contador < 3)
-                {
-                    tres.Add(m);
-                    contador++;
-                }
-            }
-
-            dgvMisiones.DataSource = tres;
+            dgvMisiones.DataSource = lista;
 
             dgvMisiones.Columns["Id"].Visible = false;
             dgvMisiones.Columns["Activa"].Visible = false;
             dgvMisiones.Columns["Tipo"].Visible = false;
         }
-
 
         private void CargarRecompensas()
         {
@@ -64,13 +51,27 @@ namespace EcoChallenge.Presentacion
                 dgvRecompensas.Columns["IdRecompensa"].Visible = false;
         }
 
-
         private void CargarPuntos()
         {
             puntosTotales = repo.ObtenerPuntosTotales(jugador.Id);
             lblPuntosTotales.Text = "Puntos Totales: " + puntosTotales;
         }
 
+        private void VerificarRecompensasAutomaticas()
+        {
+            List<Recompensa> todas = repo.ObtenerTodasLasRecompensas();
+            List<Recompensa> actuales = repo.ObtenerRecompensas(jugador.Id);
+
+            foreach (Recompensa r in todas)
+            {
+                bool yaLaTiene = actuales.Any(x => x.Id == r.Id);
+                if (!yaLaTiene && puntosTotales >= r.PuntosRequeridos)
+                {
+                    repo.AsignarRecompensa(jugador.Id, r.Id);
+                    MessageBox.Show("¡Nueva recompensa obtenida: " + r.Nombre + "!");
+                }
+            }
+        }
 
         private void btnCompletar_Click(object sender, EventArgs e)
         {
@@ -81,15 +82,14 @@ namespace EcoChallenge.Presentacion
             }
 
             int idMision = Convert.ToInt32(dgvMisiones.SelectedRows[0].Cells["Id"].Value);
-
             bool ok = repo.CompletarMision(jugador.Id, idMision);
 
             if (ok)
             {
                 MessageBox.Show("¡Misión completada!");
-
                 CargarMisiones();
                 CargarPuntos();
+                VerificarRecompensasAutomaticas();
                 CargarRecompensas();
             }
             else
@@ -97,7 +97,6 @@ namespace EcoChallenge.Presentacion
                 MessageBox.Show("Esta misión ya fue completada.");
             }
         }
-
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -107,7 +106,6 @@ namespace EcoChallenge.Presentacion
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
