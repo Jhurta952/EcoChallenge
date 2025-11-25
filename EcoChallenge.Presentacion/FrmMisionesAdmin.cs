@@ -34,11 +34,23 @@ namespace EcoChallenge.Presentacion
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtPuntos.Text))
+            {
+                MessageBox.Show("Debes ingresar un valor numérico para Puntos.");
+                return;
+            }
+
+            if (!int.TryParse(txtPuntos.Text, out int puntos))
+            {
+                MessageBox.Show("El valor de Puntos no es válido.");
+                return;
+            }
+
             Mision nueva = new Mision
             {
                 Nombre = txtNombre.Text.Trim(),
                 Descripcion = txtDescripcion.Text.Trim(),
-                Puntos = int.Parse(txtPuntos.Text),
+                Puntos = puntos, 
                 Tipo = cmbTipo.Text,
                 Activa = chkActiva.Checked
             };
@@ -48,7 +60,14 @@ namespace EcoChallenge.Presentacion
                 MessageBox.Show("Misión creada correctamente.");
                 CargarMisiones();
             }
+
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            txtPuntos.Clear();
+            cmbTipo.SelectedIndex = -1;
+            chkActiva.Checked = false;
         }
+
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -60,11 +79,27 @@ namespace EcoChallenge.Presentacion
 
             Mision m = (Mision)dgvMisiones.SelectedRows[0].DataBoundItem;
 
-            m.Nombre = txtNombre.Text.Trim();
-            m.Descripcion = txtDescripcion.Text.Trim();
-            m.Puntos = int.Parse(txtPuntos.Text);
-            m.Tipo = cmbTipo.Text;
-            m.Activa = chkActiva.Checked;
+            if (!string.IsNullOrWhiteSpace(txtNombre.Text))
+                m.Nombre = txtNombre.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(txtDescripcion.Text))
+                m.Descripcion = txtDescripcion.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(txtPuntos.Text))
+            {
+                if (int.TryParse(txtPuntos.Text, out int puntos))
+                    m.Puntos = puntos;
+                else
+                {
+                    MessageBox.Show("Ingrese un número válido para Puntos.");
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(cmbTipo.Text))
+                m.Tipo = cmbTipo.Text;
+
+             m.Activa = chkActiva.Checked;
 
             if (repo.EditarMision(m))
             {

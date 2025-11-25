@@ -63,7 +63,7 @@ namespace EcoChallenge.Presentacion
                 }
                 else
                 {
-                    FrmMenuJugador jugador = new FrmMenuJugador();
+                    FrmMenuJugador jugador = new FrmMenuJugador(usuario);
                     jugador.Show();
                 }
 

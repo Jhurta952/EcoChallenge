@@ -29,6 +29,8 @@ namespace EcoChallenge.Presentacion
         {
             FrmMisionesAdmin misionesAdmin = new FrmMisionesAdmin();
             misionesAdmin.Show();
+            this.Close();
+
         }
 
         private void FrmMenuAdmin_Load(object sender, EventArgs e)
@@ -40,6 +42,8 @@ namespace EcoChallenge.Presentacion
         {
             FrmUsuariosAdmin usuariosAdmin = new FrmUsuariosAdmin();
             usuariosAdmin.Show();
+            this.Close();
+
         }
     }
 }
